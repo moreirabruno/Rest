@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>ExemploRest</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+	<servlet>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<servlet-class>
+                     com.sun.jersey.spi.container.servlet.ServletContainer
+                </servlet-class>
+		<init-param>
+		     <param-name>com.sun.jersey.config.property.packages</param-name>
+		     <param-value>com.bruno.services</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>servico</web-resource-name>
+			<url-pattern>/teste/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>*</role-name>
+		</auth-constraint>
+		<!-- Autenticação SSL
+		<user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>-->
+	</security-constraint>
+	
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
+	
+	<security-role>
+		<role-name>*</role-name>
+	</security-role>
+	
+	<!-- Require HTTPS for everything except /img (favicon) and /css. -->
+<!--     <security-constraint> -->
+<!--         <web-resource-collection> -->
+<!--             <web-resource-name>HTTPSOnly</web-resource-name> -->
+<!--             <url-pattern>/*</url-pattern> -->
+<!--         </web-resource-collection> -->
+<!--         <user-data-constraint> -->
+<!--             <transport-guarantee>CONFIDENTIAL</transport-guarantee> -->
+<!--         </user-data-constraint> -->
+<!--     </security-constraint> -->
+<!--     <security-constraint> -->
+<!--         <web-resource-collection> -->
+<!--             <web-resource-name>HTTPSOrHTTP</web-resource-name> -->
+<!--             <url-pattern>*.ico</url-pattern> -->
+<!--             <url-pattern>/img/*</url-pattern> -->
+<!--             <url-pattern>/css/*</url-pattern> -->
+<!--         </web-resource-collection> -->
+<!--         <user-data-constraint> -->
+<!--             <transport-guarantee>NONE</transport-guarantee> -->
+<!--         </user-data-constraint> -->
+<!--     </security-constraint> -->
+
+</web-app>
